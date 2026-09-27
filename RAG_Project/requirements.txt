@@ -3,6 +3,9 @@ langchain-core
 langchain-community
 langchain-chroma
 langchain-text-splitters
+langsmith
+langchainhub
+langchain-experimental
 
 # LLM Providers
 
@@ -14,6 +17,7 @@ langchain-huggingface
 huggingface-hub
 transformers
 torch
+tokenizers
 
 # Vector Database
 
@@ -29,6 +33,10 @@ pypdf
 unstructured
 beautifulsoup4
 lxml
+html5lib
+
+# Data Validation
+pydantic
 
 # Text Processing
 

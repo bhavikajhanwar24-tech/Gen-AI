@@ -7,6 +7,16 @@ wheels/
 *.egg-info
 
 # Virtual environments
+.venv/
 .venv
 
+# Local project data / generated DBs
+chroma-db/
+chroma_db_dlpdf/
+RAG_Project/chroma_db_dlpdf/
+*.sqlite3
+*.db
+
+# Local environment / tooling
 .env
+.python-version
