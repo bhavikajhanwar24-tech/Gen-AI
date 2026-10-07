@@ -208,6 +208,89 @@ Data source -> Loader -> Chunker -> Embedding -> Vector DB -> Retriever -> LLM -
 
 This is the full story of the project.
 
+### 13. Tool calling and function-calling with LLMs
+
+Newer files in this project show how an LLM can call external tools dynamically instead of only generating text.
+
+Files:
+- `Tools/owntool.py`
+- `Tools/calculator_tool.py`
+- `Tools/toolcalling.py`
+- `Tools/newssummarizer_builtin_tool.py`
+
+Notes:
+- A tool is a Python function wrapped with `@tool` and exposed to the model.
+- Each tool should have a clear name, typed input, and a helpful docstring.
+- The model decides when to call a tool based on the user request.
+- The tool result is sent back into the model context for the next reasoning step.
+
+Examples from this repo:
+- calculator for math queries
+- text length checker
+- weather lookup
+- Tavily-based news search
+- summarization using a built-in search tool
+
+This is the foundation of LLM-powered agents and tool-using assistants.
+
+### 14. Runnable composition patterns
+
+Files:
+- `Runnables/runnablepassthrough.py`
+- `Runnables/parallelrunnable.py`
+- `Runnables/sequencerunnable.py`
+
+Notes:
+- `RunnablePassthrough` passes the incoming input unchanged to the next stage.
+- `RunnableParallel` runs multiple branches at the same time and combines outputs.
+- `RunnableLambda` lets you transform values before sending them to prompts or models.
+- Chaining components with `|` creates a clean pipeline.
+
+Common pipeline pattern:
+
+```python
+prompt | model | parser
+```
+
+This is useful for:
+- multi-step reasoning
+- parallel prompt execution
+- combining code generation with explanation
+- building reusable LangChain chains
+
+### 15. Agentic workflows
+
+Files:
+- `agent.py`
+- `Tools/toolcalling.py`
+
+Notes:
+- An agent is more than a normal chat model: it can decide to call tools.
+- `create_agent(...)` is used to build an agent with a toolkit and instructions.
+- Middleware can enforce safeguards like user approval before a tool call.
+- Agents are useful when the task needs external data, calculations, or search.
+
+Example in this repo:
+- a city assistant that can fetch weather and news
+- a human approval step before each tool call
+
+This is a practical example of agentic AI using LangChain tools.
+
+### 16. Direct vector DB examples and local RAG setup
+
+Files:
+- `RAG_Project/vector_store/DB.py`
+- `RAG_Project/overall_flow.py`
+
+Notes:
+- These files show the vector store setup without a full app wrapper.
+- `Chroma.from_documents(...)` creates a local vector database from document chunks.
+- `persist_directory` saves the database to disk for reuse.
+- `similarity_search()` is used to retrieve relevant chunks.
+- `as_retriever()` turns the DB into a reusable retrieval component.
+
+This is a clean local example of how embedding + retrieval works behind a full RAG project.
+
 # Retrievers
 
 A retriever takes a user query and returns the most relevant documents or chunks from a database.

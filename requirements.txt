@@ -12,3 +12,4 @@ fastapi
 uvicorn
 requests
 langchain-huggingface
+tavily-python
